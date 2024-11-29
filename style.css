@@ -1,0 +1,307 @@
+/* <uniquifier>: Use a unique and descriptive class name
+ <weight>: Use a value from 200 to 900 */
+
+/* .inconsolata-<uniquifier> {
+  font-family: "Inconsolata", monospace;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+} */
+
+/* <uniquifier>: Use a unique and descriptive class name
+ <weight>: Use a value from 100 to 700 */
+
+/* .roboto-mono-<uniquifier> {
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+} */
+
+/* 
+Ejemplo de cómo usarlas
+h1 {
+  font-family: "Inconsolata", monospace;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+} */
+
+/* NORMALIZACIÓN: */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* Esta propiedad mantiene el ancho y el alto a pesar de modificar el padding o el borde */
+  font-family: "Inconsolata", monospace;
+  font-optical-sizing: auto;
+  font-size: normal;
+  list-style: none; /* Esto quita la decoración o viñetas de todas las listas */
+  text-decoration: none; /* Esto quita el subrayado de todos los elementos anchor especialmente */
+  color: white;
+}
+
+/* Ahora demos ciertos estilos al body, como mi fondo será oscuro voy a empezar con uno de prueba */
+body {
+  background-color: black; /* TODO: Cambiar el fondo negro que hay de forma temporal */
+}
+
+header {
+  background-color: transparent;
+  position: fixed; /* Este position junto con el top y right es para que el header quedé fijo aún al hacer scroll */
+  top: 0;
+  right: 0;
+  width: 100%;
+  padding: 15px 3%;
+  display: flex;
+  align-items: center; /* Centra los elementos en el cross-axis que en este caso es el vertical */
+  justify-content: space-between; /* Ubica los elementos uno en cada esquina y todo el espacio entre ellos */
+  z-index: 100; /* Esto se hace para que el header siempre esté por encima de todos los elementos */
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: 800;
+}
+
+.navlist {
+  display: flex;
+}
+
+.navlist a {
+  margin-left: 60px;
+  font-size: 15px;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+  transition: all 0.5s; /* Con el "all" hacemos que todas las propiedades definidas en este selector transicionen */
+  transition-timing-function: ease; /* Curva de velocidad de la transición */
+}
+
+.navlist a:hover {
+  border-bottom: 2px solid white;
+}
+
+#menu-icon {
+  display: none;
+  font-size: 35px;
+  z-index: 101; /* Esto lo pone por encima del header, recordemos que z-index es profundidad, o el eje z */
+  cursor: pointer; /* Hace que cuando pongamos el puntero sobre el elemento aparezca una manito */
+}
+
+.hero {
+  width: 100%;
+  height: 100%;
+  padding: 0 8%;
+  min-height: 100vh; /* Esto nos garantiza que el mínimo ancho que puede tomar es el 100% de la pantalla */
+  /* El siguiente linear-gradient toma varios colores y los puntos de quiebre son indicados por el porcentaje */
+  background: linear-gradient(245.59deg, #31494e 0%, #385e70 25%, #131313 75%);
+  position: relative; /* Para que la posición sea relativa al padre, así podemos usar props como top... */
+  display: grid; /* Para poder dividir el hero en varias columnas */
+  grid-template-columns: 1fr 1fr; /* Indicamos cuantas columnas queremos, en este caso dos */
+  align-items: center; /* Centramos los elementos en el cross-axis que es el vertical para este caso */
+  gap: 2rem; /* Damos espacio entre las celdas del grid de 2rem, o 2 veces el font-size del html tag */
+}
+
+.hero-text h5 {
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 25px;
+}
+
+.hero-text h4 {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.hero-text h1 {
+  font-family: "Roboto Mono", monospace;
+  font-size: 50px;
+  line-height: 1;
+  margin: 0 0 30px;
+}
+
+.hero-text p {
+  font-size: 80%; /* Toma el 80% de ancho del elemento padre como el tamaño de fuente */
+  line-height: 1.9;
+  margin-bottom: 40px;
+}
+
+.hero-img {
+  text-align: center;
+}
+
+.hero-img img {
+  width: 370px;
+  height: auto;
+  border-radius: 50%; /*Esto hace que los bordes sean redondeados hasta quedar circular*/
+  object-fit: cover; /* Esto ajusta la imagen dentro del contenedor circular */
+  border: 3px solid #50bda5;
+  margin: 10% 0 0 10%;
+  transition: all 4s; /* Esto nos permite transicionar todas las props definidas aquí en 4s */
+  transition-timing-function: linear; /* Esto indica la velocidad de la transición */
+}
+
+.hero-img img:hover {
+  width: 420px;
+  opacity: 0.7;
+}
+
+.hero-text a {
+  display: inline-block; /* Esto nos permite darles un alto y ancho */
+  background-color: #4d4d4d;
+  border: 1px solid transparent; /* Usamos este borde para poder cambiarlo en un transition */
+  padding: 15px 30px;
+  line-height: 1.4;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 30px;
+  text-transform: uppercase; /* Así todo el texto queda en mayúscula */
+  transition: all 0.5s; /* Con el all podemos transicionar todas las props definidas aquí */
+  transition-timing-function: ease; /* Curva de la velocidad de transición */
+}
+
+.hero-text a.repositorios {
+  background-color: transparent;
+  border: 1px solid white;
+  margin-left: 20px;
+}
+
+.hero-text a.repositorios i {
+  vertical-align: middle; /* Pone el icono en el centro de su contenedor padre */
+  margin-right: 5px;
+}
+
+.hero-text a:hover {
+  background-color: transparent;
+  border: 1px solid white;
+  transform: translateX(8px);
+}
+
+/* Estilos para los iconos de las redes sociales en la izquierda */
+.left-side-icons {
+  position: absolute;
+  top: 50vh;
+  padding: 0 3%;
+  transform: translateY(
+    -50%
+  ); /* Mueve el contenedor de forma vertical hacia arriba */
+}
+
+.left-side-icons i {
+  display: block;
+  margin-bottom: 25px;
+  font-size: 25px;
+  transition: all 0.5s; /* El all nos permite hacerle transición a todas las props definidas aquí */
+  transition-timing-function: ease; /* Curva de velocidad de la transición */
+}
+
+.left-side-icons i:hover {
+  color: #4d4d4d;
+  transform: translateY(-5px);
+}
+
+/* Estilos para el scroll down */
+.scroll-down {
+  position: absolute;
+  bottom: 6%;
+  right: 3%;
+}
+
+.scroll-down i {
+  display: block;
+  font-size: 25px;
+  background-color: #21383d;
+  border-radius: 30px;
+  padding: 8px;
+  transition: all 0.5s;
+  transition-timing-function: ease;
+}
+
+.scroll-down i:hover {
+  transform: translateY(-5px);
+}
+
+/* Vamos a hacer mediaqueries para hacer nuestra web responsiva a diferentes tamaños de pantalla */
+
+/* Esto es para dispositivos tipo tabled */
+@media (max-width: 980px) {
+  .hero {
+    padding: 0 3%;
+    transition: all 0.2s; /* Para que al llegar a este breakpoint los cambios no sucedan de forma tan brusca */
+  }
+
+  .left-side-icons {
+    display: none;
+  }
+
+  .scroll-down {
+    display: none;
+  }
+
+  .hero-img {
+    text-align: center;
+  }
+
+  .hero-img img {
+    width: 80%;
+    margin: 10% 0 0 10%;
+  }
+
+  .hero-text p {
+    font-size: 70%;
+  }
+}
+
+/* Esto es para dispositivos tipo celular */
+@media screen and (max-width: 700px) {
+  #menu-icon {
+    display: block;
+  }
+
+  /* Todo lo relacionado aquí con el navlist es para manejar el cambio en la forma de verse el menú en un celular */
+  .navlist {
+    position: absolute;
+    top: 100%;
+    right: -100%;
+    width: 200px;
+    height: 180px;
+    background-color: #13131370;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    transition: right 0.3s ease-out; /* Hace que mostrar y ocultar el menú sea suave, para la experiencia del usuario */
+  }
+
+  .navlist.visible {
+    right: 0;
+  }
+
+  .hidden {
+    right: -100%;
+  }
+
+  .navlist a {
+    display: block;
+    margin: 7px 0;
+  }
+
+  .hero {
+    height: 100%;
+    gap: 1rem;
+    grid-template-columns: 1fr; /* Esto hace que el contenido quede en una sola comuna */
+  }
+
+  .hero-text {
+    text-align: center;
+    padding-top: 100px;
+  }
+}
+
+@media (max-width: 348px) {
+  .hero-text a {
+    margin-bottom: 15px;
+  }
+}
